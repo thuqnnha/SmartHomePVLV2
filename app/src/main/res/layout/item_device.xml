@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/item_device_background"
+    android:backgroundTint="#FFFFFF"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Dòng 1: Tên thiết bị + Thời gian + Thông số trên cùng 1 hàng -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Tên thiết bị (bên trái) -->
+        <TextView
+            android:id="@+id/tvDeviceName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Thiết bị"
+            android:fontFamily="@font/quicksand_bold"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <!-- Thời gian hoạt động (giữa) -->
+        <TextView
+            android:id="@+id/tvTimeRange"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="00:00:00\n00:00:00"
+            android:textSize="12sp"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="center"
+            android:paddingHorizontal="4dp"/>
+
+        <!-- Thông số kỹ thuật (bên phải) -->
+        <TextView
+            android:id="@+id/tvParams"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:text="0.0A\n0.0V\n0.0°C"
+            android:textSize="10sp"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="end"
+            android:lineSpacingExtra="2dp"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+<!--        app:checkedButton="@+id/btnAuto"-->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOff"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OFF"
+            android:fontFamily="@font/quicksand_bold"
+            android:backgroundTint="#F5F5F5"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAuto"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="AUTO"
+            android:fontFamily="@font/quicksand_bold"
+            android:backgroundTint="#F5F5F5"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOn"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ON"
+            android:fontFamily="@font/quicksand_bold"
+            android:backgroundTint="#F5F5F5"/>
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- Layout cài đặt thời gian AUTO (chỉ hiện khi chọn AUTO) -->
+    <LinearLayout
+        android:id="@+id/layoutAutoSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Thời gian bật"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetOnTime"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:00 AM"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Thời gian tắt"
+                android:textSize="14sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSetOffTime"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00 PM"/>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmAuto"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:minWidth="0dp"
+            android:text="XÁC NHẬN"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

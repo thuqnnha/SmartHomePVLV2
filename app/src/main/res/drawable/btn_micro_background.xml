@@ -1,0 +1,10 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="#FF6200EE" /> <!-- Màu nền, bạn thay đổi theo ý -->
+    <corners android:radius="28dp" />
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp" />
+    <size android:width="56dp" android:height="56dp" />
+</shape>

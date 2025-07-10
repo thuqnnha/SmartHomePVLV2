@@ -1,0 +1,224 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeFragmentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/bgSoftBlue">
+
+    <ImageButton
+        android:id="@+id/btnInformation"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_person"
+        android:scaleType="fitCenter"
+        android:contentDescription="Logout"
+        app:tint="@color/primaryDark" />
+
+    <!-- Nút thêm phòng - góc phải trên cùng -->
+    <ImageButton
+        android:id="@+id/btnAddRoom"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_add"
+        android:scaleType="fitCenter"
+        android:contentDescription="Thêm phòng"
+        app:tint="@color/primaryDark" />
+
+    <!-- Thay thế phần layout thời tiết và camera bằng bố cục dọc -->
+
+    <LinearLayout
+        android:id="@+id/layoutTopWidgets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnInformation"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="8dp" >
+
+        <!-- Widget thời tiết được thiết kế lại -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_weather"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Icon thời tiết với kích thước lớn hơn -->
+            <ImageView
+                android:id="@+id/imgWeatherIcon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/ic_sunny"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Bố cục chính được tối ưu -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Dòng đầu tiên: Nhiệt độ và mô tả ngang hàng -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/txtTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--°C"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:layout_marginEnd="12dp"/>
+
+                    <TextView
+                        android:id="@+id/txtWeatherComment"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Trời quang, khá nóng"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/black"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
+                </LinearLayout>
+
+                <!-- Thông tin gió trong bố cục ngang -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/txtWindSpeed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Gió: -- km/h"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/ic_wind"/>
+
+                    <TextView
+                        android:id="@+id/txtWindDirection"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Hướng: --°"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black"
+                        android:drawablePadding="4dp"
+                        android:drawableStart="@drawable/ic_compass"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Tiêu đề camera -->
+        <TextView
+            android:id="@+id/txtCameraTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera giám sát"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/primaryDark"
+            android:paddingStart="8dp"
+            android:paddingBottom="1dp"/>
+
+        <!-- RecyclerView camera -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCamera"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            tools:listitem="@layout/item_camera"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="1dp"
+            android:paddingVertical="1dp"/>
+    </LinearLayout>
+
+
+    <!-- Tiêu đề phòng -->
+    <TextView
+        android:id="@+id/txtRoomsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutTopWidgets"
+        android:layout_marginTop="16dp"
+        android:text="Các phòng trong nhà"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/primaryDark"
+        android:layout_marginHorizontal="8dp"/>
+
+    <!-- Danh sách phòng -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerRooms"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/txtRoomsTitle"
+        android:layout_above="@id/voiceControlLayout"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginHorizontal="8dp"/>
+
+    <!-- Nhóm voice control -->
+    <LinearLayout
+        android:id="@+id/voiceControlLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="8dp">
+
+        <TextView
+            android:id="@+id/txtVoiceResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_voice_result"
+            android:padding="10dp"
+            android:text="Nói gì đó..."
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <ImageButton
+            android:id="@+id/btnMicro"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/btn_micro_background"
+            android:src="@drawable/ic_mic_on"
+            android:contentDescription="Voice Control"
+            app:tint="@android:color/white"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<!-- res/drawable/item_device_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Trạng thái nhấn (bình thường và giữ) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <!-- Màu khi nhấn/giữ -->
+            <solid android:color="#E0E0E0"/>
+            <corners android:radius="8dp"/> <!-- Bo góc (tuỳ chọn) -->
+        </shape>
+    </item>
+
+    <!-- Trạng thái bình thường -->
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Màu nền mặc định -->
+            <solid android:color="@color/item_background_color"/>
+            <corners android:radius="8dp"/> <!-- Bo góc (tuỳ chọn) -->
+        </shape>
+    </item>
+</selector>
