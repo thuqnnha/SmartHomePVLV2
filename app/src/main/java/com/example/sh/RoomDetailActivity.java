@@ -149,48 +149,48 @@ public class RoomDetailActivity extends AppCompatActivity {
             }
         });
 //        user\admin@pvl.com.vn\data
-        recyclerDevices.setAdapter(deviceAdapter);
-        mqttHelper = new MqttHelper(this);
-        String clientId = "AndroidClient_" + System.currentTimeMillis();
-        mqttHelper.connect("tcp://mqtt.pvl.com.vn:1883", clientId, savedUsername, savedPassword, new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken asyncActionToken) {
-                Log.d("MQTT", "Kết nối MQTT thành công");
-
-                // ✅ Sau khi kết nối mới được phép subscribe
-                mqttHelper.subscribe(topicData, (topic, message) -> {
-                    String payload = new String(message.getPayload());
-                    Log.d("MQTT_RECEIVE", "Nhận được: " + payload);
-
-                    String[] parts = payload.split(" ");
-                    if (parts.length == 6) {
-                        String timeOn = parts[0];
-                        String timeOff = parts[1];
-                        String status = parts[2];
-                        float current = Float.parseFloat(parts[3]);
-                        float voltage = Float.parseFloat(parts[4]);
-                        float temperature = Float.parseFloat(parts[5]);
-
-                        runOnUiThread(() -> {
-                            for (int i = 0; i < otherDevices.size(); i++) {
-                                Device device = otherDevices.get(i);
-                                if (device.getId() == 2) {
-                                    ChartEntry entry = new ChartEntry(timeOn, timeOff, status, current, voltage, temperature);
-                                    device.setLatestEntry(entry);
-                                    deviceAdapter.notifyItemChanged(i, "updateDataOnly");
-                                    break;
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                Toast.makeText(RoomDetailActivity.this, "Kết nối MQTT thất bại", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        recyclerDevices.setAdapter(deviceAdapter);
+//        mqttHelper = new MqttHelper(this);
+//        String clientId = "AndroidClient_" + System.currentTimeMillis();
+//        mqttHelper.connect("tcp://mqtt.pvl.com.vn:1883", clientId, savedUsername, savedPassword, new IMqttActionListener() {
+//            @Override
+//            public void onSuccess(IMqttToken asyncActionToken) {
+//                Log.d("MQTT", "Kết nối MQTT thành công");
+//
+//                // ✅ Sau khi kết nối mới được phép subscribe
+//                mqttHelper.subscribe(topicData, (topic, message) -> {
+//                    String payload = new String(message.getPayload());
+//                    Log.d("MQTT_RECEIVE", "Nhận được: " + payload);
+//
+//                    String[] parts = payload.split(" ");
+//                    if (parts.length == 6) {
+//                        String timeOn = parts[0];
+//                        String timeOff = parts[1];
+//                        String status = parts[2];
+//                        float current = Float.parseFloat(parts[3]);
+//                        float voltage = Float.parseFloat(parts[4]);
+//                        float temperature = Float.parseFloat(parts[5]);
+//
+//                        runOnUiThread(() -> {
+//                            for (int i = 0; i < otherDevices.size(); i++) {
+//                                Device device = otherDevices.get(i);
+//                                if (device.getId() == 2) {
+//                                    ChartEntry entry = new ChartEntry(timeOn, timeOff, status, current, voltage, temperature);
+//                                    device.setLatestEntry(entry);
+//                                    deviceAdapter.notifyItemChanged(i, "updateDataOnly");
+//                                    break;
+//                                }
+//                            }
+//                        });
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+//                Toast.makeText(RoomDetailActivity.this, "Kết nối MQTT thất bại", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 
